@@ -17,3 +17,15 @@ This
 
 This is an implementation of the vanilla and natural ES algorithms in Go, to both
 replicate the results from the paper, and for use in other projects.
+
+
+## To Do
+
+- Interface for 1d ES style optimizers
+- Benchmark interface / package (quadratic, sphere 10, rosenbrock 10)
+- Vanilla ES algorithm, run benchmarks
+- Canonical NES algorithm, run benchmarks (eta in {0.1, 0.5})
+- NES: Fitness shaping
+- NES: Adaptation sampling
+- Multivariate NES interface
+- ...
