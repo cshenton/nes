@@ -41,6 +41,8 @@ func NewPlain(pop dist.Distribution, rate float64, size int) (p *Plain, err erro
 func (p *Plain) Sample() (z []float64) { return p.Population.Sample() }
 
 // Update updates the search distribution in response to an observed fitness.
+// This will just accumulate gradients until the generation size is reached at
+// which point it applies and resets them.
 func (p *Plain) Update(z []float64, f float64) {
 	s := p.Population.SearchGrads(z)
 	for i := range p.update {
@@ -54,3 +56,6 @@ func (p *Plain) Update(z []float64, f float64) {
 		p.count = 0
 	}
 }
+
+// Mean returns the mean of the search distribution.
+func (p *Plain) Mean() (z []float64) { return p.Population.Mean() }

@@ -57,6 +57,9 @@ func (n *DiagNormal) Params() (p []float64) {
 	return p
 }
 
+// Mean returns the distribution's mean.
+func (n *DiagNormal) Mean() (z []float64) { return n.Loc }
+
 // SearchGrads returns a slice of parameter partial derivatives at the provided point.
 func (n *DiagNormal) SearchGrads(z []float64) (s []float64) {
 	s = make([]float64, 2*len(n.Loc))
