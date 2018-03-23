@@ -29,16 +29,3 @@ func Optimize(e Evaler, o Optimizer, n int) (x, f float64) {
 
 	return x, f
 }
-
-// Okay, we have a search distribution.
-// That search distribution has parameters.
-// Can calculate log derivatives of those params wrt a param sample.
-// Then update rules decides WHAT to do with those log derivs.
-
-// So then maybe
-
-// Distribution is a search distribution.
-type Distribution interface {
-	Params() (p []float64)
-	Gradients(x float64) []float64
-}
