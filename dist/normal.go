@@ -3,6 +3,7 @@ package dist
 import (
 	"errors"
 	"fmt"
+	"math"
 	"math/rand"
 )
 
@@ -46,4 +47,24 @@ func (n *DiagNormal) Sample() (z []float64) {
 	}
 
 	return z
+}
+
+// Params returns all the parameters of this diag normal search distribution.
+func (n *DiagNormal) Params() (p []float64) {
+	p = make([]float64, len(n.Loc))
+	copy(p, n.Loc)
+	p = append(p, n.Scale...)
+	return p
+}
+
+// SearchGrads returns a slice of parameter partial derivatives at the provided point.
+func (n *DiagNormal) SearchGrads(z []float64) (s []float64) {
+	s = make([]float64, 2*len(n.Loc))
+
+	for i := range z {
+		s[i] = (z[i] - n.Loc[i]) / n.Scale[i]
+		s[i+len(n.Loc)] = 0.5 * (math.Pow((z[i]-n.Loc[i])/n.Scale[i], 2) - 1/(n.Scale[i]))
+	}
+
+	return s
 }
