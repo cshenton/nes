@@ -46,7 +46,7 @@ func (p *Plain) Sample() (z []float64) { return p.Population.Sample() }
 func (p *Plain) Update(z []float64, f float64) {
 	s := p.Population.SearchGrads(z)
 	for i := range p.update {
-		p.update[i] += s[i] * f / float64(p.Size)
+		p.update[i] += s[i] * f * p.Rate / float64(p.Size)
 	}
 	p.count++
 

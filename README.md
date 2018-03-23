@@ -21,14 +21,31 @@ replicate the results from the paper, and for use in other projects.
 
 ## To Do
 
-- Interface for 1d ES style optimizers
-- Benchmark interface / package (quadratic, sphere 10, rosenbrock 10)
-- Vanilla ES algorithm, run benchmarks
+- Vanilla ES algorithm, quick demo of failure on quadratic function DONE
 - Canonical NES algorithm, run benchmarks (eta in {0.1, 0.5})
 - NES: Fitness shaping
 - NES: Adaptation sampling
 - Multivariate NES interface
 - ...
+
+
+### Results
+
+#### Plain ES
+
+Plain ES is rubbish as expected, just `go run cmd/plain/main.go` to see `1e5` iterations
+of optimization on `f(x) = x**2` (pop size `10`, so `1e4` generations).
+
+It's very slow to converge, and increasing the learning rate causes divergence.
+```
+n: 2000 	 loc:  0.154 	 scale:  3.086
+n: 4000 	 loc: -0.093 	 scale:  1.704
+n: 6000 	 loc: -0.071 	 scale:  1.190
+...
+n: 96000 	 loc:  0.000 	 scale:  0.342
+n: 98000 	 loc:  0.002 	 scale:  0.343
+100000 iterations completed in 18.462808ms
+```
 
 
 ## API scratch
