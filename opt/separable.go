@@ -37,7 +37,7 @@ func NewSeparable(rate float64, size int, dim int) (s *Separable, err error) {
 	loc := make([]float64, dim)
 	scale := make([]float64, dim)
 	for i := range scale {
-		scale[i] = 1e6
+		scale[i] = 1e3
 	}
 	d, _ := dist.NewDiagNormal(loc, scale)
 
@@ -84,5 +84,7 @@ func (s *Separable) Update(z []float64, f float64) {
 			s.Loc[j] += dLoc[j]
 			s.Scale[j] *= dScale[j]
 		}
+
+		s.count = 0
 	}
 }

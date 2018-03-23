@@ -29,14 +29,14 @@ func utilities(f []float64, size int) (u []float64) {
 	}
 
 	// Sort to get permutations
-	sort.Sort(us)
+	sort.Sort(sort.Reverse(us))
 	perm = us.perm
 
 	// Calculate utilities
 	s := float64(size)
 	u = make([]float64, len(f))
 	for i := range perm {
-		u[perm[i]] = float64(i) // whatever was in position perm[i] is rank i
+		u[perm[i]] = float64(i) + 1.0 // whatever was in position perm[i] is rank i
 	}
 	for i := range u {
 		u[i] = math.Max(0, math.Log(s/2+1)-math.Log(u[i]))
