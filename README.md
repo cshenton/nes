@@ -10,8 +10,6 @@ adjustment to the vanilla approach (which just computes an empirical gradient
 update) which scale the gradient by the fisher information matrix of the search
 distribution.
 
-This
-
 
 ## What is this repo?
 
