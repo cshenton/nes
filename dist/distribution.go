@@ -8,5 +8,7 @@ type Distribution interface {
 	Params() (p []float64)
 	// SearchGrads computes the partial derivatives of the loglikelihood w.r.t.
 	// the distribution parameters.
-	SearchGrads(z []float64) (pg []float64)
+	SearchGrads(z []float64) (s []float64)
+	// Apply applies a gradient-based update to the search distribution params.
+	Apply(u []float64)
 }

@@ -68,3 +68,11 @@ func (n *DiagNormal) SearchGrads(z []float64) (s []float64) {
 
 	return s
 }
+
+// Apply applies a gradient update to the search distribution parameters.
+func (n *DiagNormal) Apply(u []float64) {
+	for i := range n.Loc {
+		n.Loc[i] += u[i]
+		n.Scale[i] += u[i+len(n.Loc)]
+	}
+}
